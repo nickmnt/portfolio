@@ -1,39 +1,32 @@
-import Button from '@mui/material/Button/Button';
+import React, { useEffect, useState } from 'react';
 import Stack from '@mui/material/Stack/Stack';
-import Typography from '@mui/material/Typography/Typography';
-import React from 'react';
-import logo from './logo.svg';
+import Grow from '@mui/material/Grow/Grow';
+import Introduction from './pages/Introduction';
 import './sass/_main.scss';
 
 function App() {
+    const [checked, setChecked] = useState(false);
+    const [page, setPage] = useState(0);
+
+    useEffect(() => {
+        setChecked(false);
+
+        setTimeout(() => {
+            setChecked(true);
+        }, 1000);
+    }, [page]);
+
     return (
         <div className="App">
             <header className="App-header"></header>
             <div className="bg"></div>
             <div className="bg bg2"></div>
             <div className="bg bg3"></div>
-            <div className="content" style={{ width: '70vw', height: '20vw' }}>
-                <Stack>
-                    <Typography variant="h2">Hello, I'm Nima.</Typography>
-                    <div style={{ display: 'flex', width: '100%', alignItems: 'center', justifyContent: 'space-between' }}>
-                        <img src={logo} className="App-logo" alt="logo" style={{ objectFit: 'cover', width: '10vw', height: '10vw' }} />
-                        <img
-                            src={'https://upload.wikimedia.org/wikipedia/commons/thumb/a/ab/TensorFlow_logo.svg/1200px-TensorFlow_logo.svg.png'}
-                            className="App-logo"
-                            alt="logo"
-                            style={{ objectFit: 'cover', width: '20vw', height: '12vw' }}
-                        />
-                        <img
-                            src={'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Python-logo-notext.svg/1200px-Python-logo-notext.svg.png'}
-                            className="App-logo"
-                            alt="logo"
-                            style={{ width: '10vw', height: '10vw' }}
-                        />
-                        <img src={'https://miro.medium.com/max/1280/1*rxJgPRBppDajIlafVyffQw.png'} className="App-logo" alt="logo" style={{ width: '35vw', height: '10vw' }} />
-                    </div>
-                    <Stack justifyContent={'space-between'}>
-                        <Button sx={{ fontSize: '1.6rem' }}>Services &gt;</Button>
-                    </Stack>
+            <div className="content" style={{ width: '75vw', height: '22.5vw' }}>
+                <Stack sx={{ width: '100%', height: '100%' }}>
+                    <Grow in={checked} timeout={1000}>
+                        <div style={{ width: '100%', height: '100%' }}>{page === 0 && <Introduction setPage={setPage} />}</div>
+                    </Grow>
                 </Stack>
             </div>
         </div>
