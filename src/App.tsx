@@ -25,7 +25,7 @@ function App() {
             <div className="content" style={{ width: '75vw', height: '22.5vw' }}>
                 <Stack sx={{ width: '100%', height: '100%' }}>
                     <Grow in={checked} timeout={1000}>
-                        <div style={{ width: '100%', height: '100%' }}>{page === 0 && <Introduction setPage={setPage} />}</div>
+                        <div style={{ width: '100%', height: '100%' }}>{page === 0 && <Introduction setPage={setPage} checked={checked} />}</div>
                     </Grow>
                 </Stack>
             </div>
